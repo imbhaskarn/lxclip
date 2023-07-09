@@ -129,14 +129,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
-  clipboard_monitor:
-    dependency: "direct main"
-    description:
-      name: clipboard_monitor
-      sha256: c32361666050815414104cc9fb515bae979fed970650f708826004e69e56df63
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.2"
   clock:
     dependency: transitive
     description:

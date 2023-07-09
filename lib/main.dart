@@ -1,6 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'clipboard_monitor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,21 +70,25 @@ class MyTabView extends StatefulWidget {
 }
 
 class _MyTabViewState extends State<MyTabView> {
-  final clipboardMonitor = ClipboardMonitor();
   @override
   void initState() {
     super.initState();
-    clipboardMonitor.onChange((content) {
-      setState(() {
-        clipItems.add(content);
-      });
+
+    Timer.periodic(const Duration(seconds: 1), (timer) async {
+      ClipboardData? cdata = await Clipboard.getData(Clipboard.kTextPlain);
+      var lastClip = clipItems[clipItems.length - 1];
+      if (lastClip != cdata?.text) {
+        setState(() {
+          clipItems.add(cdata!.text!);
+        });
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
-    final Color oddItemColor = colorScheme.primary.withOpacity(0.05);
+    final Color oddItemColor = colorScheme.secondary.withOpacity(0.05);
     final Color evenItemColor = colorScheme.primary.withOpacity(0.15);
     return TabBarView(
       children: <Widget>[
