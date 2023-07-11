@@ -120,11 +120,9 @@ class _MyTabViewState extends State<MyTabView> {
                       });
                       // copied successfully
                     },
-                    child: const InkWell(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 8.0),
-                        child: Icon(Icons.delete_forever_rounded),
-                      ),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 8.0),
+                      child: Icon(Icons.delete_forever_rounded),
                     ),
                   ),
                 ],
